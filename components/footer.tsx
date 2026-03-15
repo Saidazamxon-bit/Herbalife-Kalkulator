@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Phone, Send } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,10 +13,17 @@ export function Footer() {
           {/* Brand Section */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-sm">HL</span>
+              <div className="w-10 h-10 rounded-lg overflow-hidden shadow-lg flex items-center justify-center">
+                <img
+                  src="/icon-512.png"
+                  alt="Herbalife logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-white">Herbalife</h3>
+              <h3 className="text-lg sm:text-xl font-bold">
+                <span className="text-sky-400">PrintWorkPro</span>
+                <span className="text-green-600 dark:text-green-400">-Herbalife</span>
+              </h3>
             </div>
             <p className="text-xs sm:text-sm text-slate-400">
               Sog'lik va oziqlanish bo'yicha eng yaxshi mahsulotlar
@@ -47,9 +55,40 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-semibold text-white mb-3 text-sm">Aloqa</h4>
-            <p className="text-xs sm:text-sm text-slate-400 mb-2">
-              Biz bilan biznesingizni tez va oson rivojlantiring!
-            </p>
+            <div className="space-y-2 text-xs sm:text-sm text-slate-300">
+              <a
+                href="tel:+998882700707"
+                className="flex items-center gap-2 hover:text-green-400 transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                <span>+998 88 270 0707</span>
+              </a>
+              <a
+                href="tel:+998907702299"
+                className="flex items-center gap-2 hover:text-green-400 transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                <span>+998 90 770 2299</span>
+              </a>
+              <a
+                href="https://t.me/PrintWork_pro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-green-400 transition-colors"
+              >
+                <Send className="w-4 h-4" />
+                <span>Telegram kanal: @PrintWork_pro</span>
+              </a>
+              <a
+                href="https://t.me/Printwork_hlf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-green-400 transition-colors"
+              >
+                <Send className="w-4 h-4" />
+                <span>Telegram lichka: @Printwork_hlf</span>
+              </a>
+            </div>
           </div>
         </div>
 

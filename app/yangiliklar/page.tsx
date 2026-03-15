@@ -186,7 +186,9 @@ export default function YangilikalarPage() {
             Boshqa yangiliklar
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {NEWS_ITEMS.slice(1).map((news) => (
+            {NEWS_ITEMS.slice(1)
+              .filter((news) => ![3, 5, 6].includes(news.id))
+              .map((news) => (
               <div
                 key={news.id}
                 className="bg-white dark:bg-slate-900 rounded-lg border border-green-100 dark:border-green-900 overflow-hidden hover:shadow-md hover:border-green-300 dark:hover:border-green-700 transition-all hover:-translate-y-1"

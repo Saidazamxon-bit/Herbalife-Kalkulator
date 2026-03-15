@@ -57,7 +57,7 @@ export default function SozlamalarPage() {
           {/* Theme Settings Card */}
           <div className="bg-white dark:bg-slate-900 rounded-xl border border-green-100 dark:border-green-900 p-6 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
                 {isDarkMode ? (
                   <div className="w-12 h-12 rounded-lg bg-green-50 dark:bg-green-950 flex items-center justify-center">
                     <Moon className="w-6 h-6 text-green-600 dark:text-green-400" />
@@ -69,12 +69,12 @@ export default function SozlamalarPage() {
                 )}
                 <div>
                   <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
-                    Tungi rejim
+                    {t.settingsThemeTitle}
                   </h2>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
                     {isDarkMode
-                      ? 'Tungi rejim faol'
-                      : 'Kunduzgi rejim faol'}
+                      ? t.settingsThemeOn
+                      : t.settingsThemeOff}
                   </p>
                 </div>
               </div>
@@ -128,32 +128,22 @@ export default function SozlamalarPage() {
             </div>
           </div>
 
-          {/* Coming Soon Features */}
+          {/* Coming Soon Features (only language & notifications) */}
           <div className="space-y-4">
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-              Yangi imkoniyatlar
+              {t.settingsNewFeatures}
             </h2>
             <div className="grid gap-4 md:grid-cols-2">
               {[
                 {
-                  title: 'Til sozlamalari',
-                  description: 'Interfeys tilini o\'zgartirish',
+                  title: t.settingsFeatureLanguageTitle,
+                  description: t.settingsFeatureLanguageDesc,
                   icon: '🌐',
                 },
                 {
-                  title: 'Bildirishnomalar',
-                  description: 'Yangiliklar va taklif haqida xabarnomalar',
+                  title: t.settingsFeatureNotificationsTitle,
+                  description: t.settingsFeatureNotificationsDesc,
                   icon: '🔔',
-                },
-                {
-                  title: 'Xususiylik',
-                  description: 'Shaxsiy ma\'lumotlarni boshqarish',
-                  icon: '🔒',
-                },
-                {
-                  title: 'Hisobot',
-                  description: 'Sotish va foydali mahsulotlarning hisoboti',
-                  icon: '📊',
                 },
               ].map((item, index) => (
                 <div
@@ -175,13 +165,13 @@ export default function SozlamalarPage() {
           {/* Info Section */}
           <div className="bg-green-50 dark:bg-green-950 rounded-lg p-6 border border-green-200 dark:border-green-800">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Herbalife Mahsulotlar Katalogi
+              {t.settingsInfoTitle}
             </h3>
             <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">
-              Versiya 2.0 - Modernizlangan interfeys va chizmalar bilan
+              {t.settingsInfoVersion}
             </p>
             <p className="text-xs text-slate-600 dark:text-slate-400">
-              © 2024-2026 Herbalife Nutrition. Barcha huquqlar himoyalangan.
+              {t.settingsInfoCopyright}
             </p>
           </div>
         </div>

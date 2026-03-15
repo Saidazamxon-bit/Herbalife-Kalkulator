@@ -39,10 +39,17 @@ export function Header({
         <div className="flex items-center justify-between mb-3">
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">HL</span>
+            <div className="w-10 h-10 rounded-lg overflow-hidden shadow-lg flex items-center justify-center">
+              <img
+                src="/icon-512.png"
+                alt="Herbalife logo"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <h1 className="text-xl font-bold text-green-700 dark:text-green-400 hidden sm:block">Herbalife</h1>
+            <h1 className="text-xl font-bold hidden sm:block">
+              <span className="text-sky-500">PW</span>
+              <span className="text-green-700 dark:text-green-400">-Herbalife</span>
+            </h1>
           </Link>
 
           {/* Navigation Links */}
