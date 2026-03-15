@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Moon, Sun } from 'lucide-react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 export default function SozlamalarPage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
@@ -45,7 +47,7 @@ export default function SozlamalarPage() {
           >
             <ArrowLeft size={20} />
           </Link>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Sozlamalar</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{t.settings}</h1>
         </div>
       </div>
 
@@ -90,6 +92,39 @@ export default function SozlamalarPage() {
                   }`}
                 />
               </button>
+            </div>
+          </div>
+
+          {/* Language Settings */}
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-green-100 dark:border-green-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              {t.language}
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {([
+                { value: 'uz-latn', label: t.uzbekLatin },
+                { value: 'uz-cyrl', label: t.uzbekCyrillic },
+                { value: 'ru', label: t.russian },
+                { value: 'en', label: t.english },
+              ] as const).map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setLanguage(option.value)}
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all ${
+                    language === option.value
+                      ? 'border-green-500 bg-green-50 dark:bg-green-950 text-green-800 dark:text-green-200'
+                      : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:border-green-400 dark:hover:border-green-600'
+                  }`}
+                >
+                  <span>{option.label}</span>
+                  {language === option.value && (
+                    <span className="text-xs font-semibold text-green-600 dark:text-green-400">
+                      Active
+                    </span>
+                  )}
+                </button>
+              ))}
             </div>
           </div>
 

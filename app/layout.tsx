@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { ServiceWorkerRegister } from '@/components/service-worker-register'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
   title: 'Herbalife Nutrition - Mahsulotlar Katalogi',
   description: 'Herbalife sog\'lik va oziqlanish mahsulotlarining eng katta tanloviga ega. Qavat chegirmalar va kosmitika mahsulotlari.',
   generator: 'v0.app',
+  manifest: '/manifest.json',
+  themeColor: '#16a34a',
   icons: {
     icon: [
       {
@@ -38,6 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-sans antialiased">
         {children}
+        <ServiceWorkerRegister />
         <Analytics />
       </body>
     </html>
