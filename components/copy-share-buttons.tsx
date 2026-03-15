@@ -27,17 +27,21 @@ export function CopyShareButtons({
   const [copied, setCopied] = useState(false);
 
   const formatCartText = () => {
-    let text = '';
+    let text = '🛒 Herbalife Mahsulotlar\n';
+    text += '═'.repeat(50) + '\n\n';
 
     cartItems.forEach((item) => {
-      text += `Product: ${item.name}\n`;
-      text += `Quantity: ${item.quantity}\n`;
-      text += `VP: ${(item.vp * item.quantity).toFixed(2)}\n`;
-      text += `Price: ${(item.price * item.quantity).toLocaleString()} so'm\n\n`;
+      text += `📦 Mahsulot: ${item.name}\n`;
+      text += `📊 Miqdor: ${item.quantity} dona\n`;
+      text += `⭐ VP: ${(item.vp * item.quantity).toFixed(2)}\n`;
+      text += `💰 Narx: ${(item.price * item.quantity).toLocaleString()} so'm\n`;
+      text += '─'.repeat(50) + '\n\n';
     });
 
-    text += `Total VP: ${totalVP.toFixed(2)}\n`;
-    text += `Total Price: ${totalPrice.toLocaleString()} so'm\n`;
+    text += '═'.repeat(50) + '\n';
+    text += `📈 Jami VP: ${totalVP.toFixed(2)}\n`;
+    text += `💵 Jami narx: ${totalPrice.toLocaleString()} so'm\n`;
+    text += '═'.repeat(50) + '\n';
 
     return text;
   };
@@ -56,7 +60,7 @@ export function CopyShareButtons({
   const handleShare = async () => {
     const text = formatCartText();
     const shareData = {
-      title: 'Herbalife Products',
+      title: 'Herbalife Mahsulotlar',
       text: text,
     };
 
