@@ -6,9 +6,13 @@ import { ProductGrid } from '@/components/product-grid';
 import { CartSummary } from '@/components/cart-summary';
 import { NotificationToast } from '@/components/notification-toast';
 import { Footer } from '@/components/footer';
+import { CopyShareButtons } from '@/components/copy-share-buttons';
+import { useLanguage } from '@/lib/LanguageContext';
 import { PRODUCTS_DATA } from '@/data/products';
+import { Search, ArrowUpDown } from 'lucide-react';
 
 type CatalogType = 'mahsulotlar' | 'kosmetika' | 'boshqa';
+type SortType = 'name' | 'vp' | 'price';
 
 interface CartItem {
   name: string;
@@ -18,30 +22,15 @@ interface CartItem {
 }
 
 export default function Home() {
+  const { t } = useLanguage();
   const [catalogType, setCatalogType] = useState<CatalogType>('mahsulotlar');
   const [discount, setDiscount] = useState(0);
   const [notification, setNotification] = useState('');
   const [notifVisible, setNotifVisible] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [quantities, setQuantities] = useState<string[]>([]);
-
-  const products = PRODUCTS_DATA[catalogType];
-
-  useEffect(() => {
-    setQuantities(Array(products.length).fill('0'));
-  }, [catalogType, products.length]);
-
-  useEffect(() => {
-    setCartItems((prev) =>
-      prev.map((item) => {
-        const product = products.find((p) => p.name === item.name);
-        if (!product) return item;
-
-        const newPrice = getDiscountedPrice(product, discount);
-        return { ...item, price: newPrice };
-      })
-    );
-  }, [discount, catalogType, products]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortType, setSortType] = useState<SortType>('name');
 
   const getDiscountedPrice = (product: any, discountValue: number) => {
     switch (discountValue) {
@@ -58,6 +47,41 @@ export default function Home() {
     }
   };
 
+  const allProducts = PRODUCTS_DATA[catalogType];
+  
+  // 🔍 Filtrlash va saralash
+  const filteredProducts = allProducts
+    .filter((p) =>
+      p.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => {
+      switch (sortType) {
+        case 'vp':
+          return b.vp - a.vp;
+        case 'price':
+          return getDiscountedPrice(a, discount) - getDiscountedPrice(b, discount);
+        case 'name':
+        default:
+          return a.name.localeCompare(b.name);
+      }
+    });
+
+  useEffect(() => {
+    setQuantities(Array(allProducts.length).fill('0'));
+  }, [catalogType, allProducts.length]);
+
+  useEffect(() => {
+    setCartItems((prev) =>
+      prev.map((item) => {
+        const product = allProducts.find((p) => p.name === item.name);
+        if (!product) return item;
+
+        const newPrice = getDiscountedPrice(product, discount);
+        return { ...item, price: newPrice };
+      })
+    );
+  }, [discount, catalogType, allProducts]);
+
   const showNotification = (message: string) => {
     setNotification(message);
     setNotifVisible(true);
@@ -66,12 +90,12 @@ export default function Home() {
   };
 
   const handleAddToCart = (index: number) => {
-    const qty = parseInt(quantities[index]);
-    const product = products[index];
+    const product = filteredProducts[index];
+    const qty = parseInt(quantities[index] || '0');
 
     if (qty === 0) {
       setCartItems((prev) => prev.filter((i) => i.name !== product.name));
-      showNotification(`${product.name} tanlanganlardan olib tashlandi`);
+      showNotification(`${product.name} ${t.removedFromCart}`);
       return;
     }
 
@@ -88,7 +112,7 @@ export default function Home() {
       return [...prev, newItem];
     });
 
-    showNotification(`${product.name} mahsuloti ${qty} dona qilib belgilandi`);
+    showNotification(`${product.name} ${t.addedToCart}`);
   };
 
   const handleQuantityChange = (index: number, value: string) => {
@@ -133,8 +157,55 @@ export default function Home() {
 
       {cartItems.length > 0 && <CartSummary totalVP={totalVP} totalPrice={totalPrice} isFloating />}
 
+      {/* 🔍 Search & Sort Section */}
+      <section className="py-4 px-3 sm:px-4 bg-white dark:bg-slate-900 border-b border-green-100 dark:border-green-900 sticky top-16 z-30">
+        <div className="mx-auto max-w-7xl space-y-3">
+          {/* Search Input */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder={t.search}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-green-200 dark:border-green-900 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          {/* Sort Options */}
+          <div className="flex gap-2 flex-wrap">
+            <div className="flex items-center gap-2">
+              <ArrowUpDown className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-400">{t.sort}:</span>
+            </div>
+            {(['name', 'vp', 'price'] as const).map((sort) => (
+              <button
+                key={sort}
+                onClick={() => setSortType(sort)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                  sortType === sort
+                    ? 'bg-green-600 text-white'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                }`}
+              >
+                {sort === 'name' && t.sortByName}
+                {sort === 'vp' && t.sortByVP}
+                {sort === 'price' && t.sortByPrice}
+              </button>
+            ))}
+          </div>
+
+          {/* Results Count */}
+          {searchQuery && (
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              {filteredProducts.length} ta mahsulot topildi
+            </p>
+          )}
+        </div>
+      </section>
+
       <ProductGrid
-        products={products}
+        products={filteredProducts}
         quantities={quantities}
         discount={discount}
         onQuantityChange={handleQuantityChange}
@@ -146,12 +217,25 @@ export default function Home() {
       />
 
       {cartItems.length > 0 && (
-        <CartSummary
-          totalVP={totalVP}
-          totalPrice={totalPrice}
-          cartItems={cartItems}
-          isFloating={false}
-        />
+        <section className="py-6 sm:py-12 px-3 sm:px-4 bg-green-50 dark:bg-slate-900 border-t-2 border-green-200 dark:border-green-900">
+          <div className="mx-auto max-w-4xl">
+            <CartSummary
+              totalVP={totalVP}
+              totalPrice={totalPrice}
+              cartItems={cartItems}
+              isFloating={false}
+            />
+            
+            {/* Copy/Share/PDF Buttons */}
+            <div className="mt-6">
+              <CopyShareButtons
+                cartItems={cartItems}
+                totalVP={totalVP}
+                totalPrice={totalPrice}
+              />
+            </div>
+          </div>
+        </section>
       )}
 
       <Footer />
