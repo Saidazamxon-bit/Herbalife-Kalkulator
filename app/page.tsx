@@ -32,7 +32,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortType, setSortType] = useState<SortType>('name');
 
-  const getDiscountedPrice = (product: any, discountValue: number) => {
+  function getDiscountedPrice(product: any, discountValue: number) {
     switch (discountValue) {
       case 25:
         return product.price25;
@@ -45,7 +45,7 @@ export default function Home() {
       default:
         return product.recommendedPrice;
     }
-  };
+  }
 
   const allProducts = PRODUCTS_DATA[catalogType];
   
