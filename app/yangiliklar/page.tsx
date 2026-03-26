@@ -5,18 +5,8 @@ import { ArrowLeft, Calendar, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 const NEWS_ITEMS = [
-
-   {
-    id: 1,
-    title: 'Yangi Maxsulotlar narxi!',
-    date: '26-Mart, 2026',
-    description: 'Herbalife ning Ozbekistondagi Filuet saytidagi maxsulotlar narxi 26-mart kuni 8.7% ga kotarilishi malum qilindi.',
-content: `❗❗❗ Xayrli kech, Hurmatli Mustaqil Hamkorlar, 25-mart soat 23:45 dan 26-mart soat 13:00 ga qadar sayt narxlar o'sishi doirasida tizimdagi narxlarning yangilanishi munosabati bilan ishlamasligini ma'lum qilamiz. Iltimos, ushbu ma'lumotni quyi tashkilotingizga yetkazing va ishni oldindan rejalashtiring.`,    image: '📈💸',
-    category: 'Xabar',
-    slug: 'Narx oshishi boyicxha',
-  },
   {
-    id: 2,
+    id: 1,
     title: 'Herbalife: Oziq-ovqat chiqindilari hajmini kamaytirish va sayyoraga yordam berishning 5 ta usuli',
     date: '5-Iyun, 2026',
     description: '5-iyun Butunjahon atrof-muhitni muhofaza qilish kuni. Shu kun arafasida Herbalife ovqatlanish bo’yicha mutaxassisi Gulbaxor Ishanxodjayeva ongli iste’mol haqida gapirdi va ushbu amaliyotni kundalik hayotga tatbiq etish bo’yicha maslahatlar bilan o’rtoqlashdi.',
@@ -62,7 +52,7 @@ O’z hududingizda alohida axlat yig’ish punktlarini topish, uyingiz yonida es
     slug: 'herbalife-oz-iq-chiqindilari-kamaytirish',
   },
   {
-    id: 3,
+    id: 2,
     title: 'Yangi Herbalife Mahsulotlar Koleksiyasi',
     date: '15-Mart, 2026',
     description: 'Bugun Herbalife kompaniyasi yangi qator sog\'lik va oziqlanish mahsulotlarini taqdim etdi. Yangi formulalar turli sog\'lik ehtiyojlari uchun eng yaxshi natijalarni ta\'minlaydi.',
@@ -72,7 +62,7 @@ O’z hududingizda alohida axlat yig’ish punktlarini topish, uyingiz yonida es
     slug: 'yangi-herbalife-mahsulotlar-koleksiyasi',
   },
   {
-    id: 4,
+    id: 3,
     title: 'Herbalife Orttirish Dasturi Yangisi',
     date: '05-Mart, 2026',
     description: 'Yangi loyalty programa ildirildi. Har bir sotish uchun ballar yig\'ing va pul qaytarish qiling.',
@@ -82,7 +72,7 @@ O’z hududingizda alohida axlat yig’ish punktlarini topish, uyingiz yonida es
     slug: 'herbalife-orttirish-dasturi-yangisi',
   },
   {
-    id: 5,
+    id: 4,
     title: 'Mobil Ilovasi Yangilandi',
     date: '28-Fevral, 2026',
     description: 'Yangi interfeys va qo\'shimcha funksiyalar bilan mobile ilovasi yangilandi. Endi boshqa tez va oson bo\'ldi.',
@@ -92,7 +82,7 @@ O’z hududingizda alohida axlat yig’ish punktlarini topish, uyingiz yonida es
     slug: 'mobil-ilovasi-yangilandi',
   },
   {
-    id: 6,
+    id: 5,
     title: 'Sog\'lik Maslahatining Mahsulot Unvoni',
     date: '20-Fevral, 2026',
     description: 'Bizning sog\'lik mutaxassislari yangi blog seriyasini boshladi. Sog\'lik va oziqlanish haqida foydali maslahatlar.',
@@ -102,7 +92,7 @@ O’z hududingizda alohida axlat yig’ish punktlarini topish, uyingiz yonida es
     slug: 'sog-lik-maslahatining-mahsulot-unvoni',
   },
   {
-    id: 7,
+    id: 6,
     title: 'Yangi Filiallar Ochildi',
     date: '15-Fevral, 2026',
     description: 'Herbalife 5 ta yangi filiallar ochildi. Endi yanada qo\'l ostida mahsulotlarni sotib olish mumkin.',
