@@ -61,7 +61,7 @@ export function Footer() {
                 className="flex items-center gap-2 hover:text-green-400 transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                <span>+998 88 270 0707</span>
+                <span>+998 88 250 0707</span>
               </a>
               <a
                 href="tel:+998907702299"
@@ -95,7 +95,7 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-slate-800 pt-6 sm:pt-8">
           <p className="text-center text-xs sm:text-sm text-slate-500">
-            Mualliflik huquqi © {currentYear} Herbalife. Barcha huquqlar himoyalangan.
+            Mualliflik huquqi © {currentYear} Printwork Pro. Barcha huquqlar himoyalangan.
           </p>
         </div>
       </div>
