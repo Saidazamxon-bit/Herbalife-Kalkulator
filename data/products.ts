@@ -273,6 +273,21 @@ const NUTRITION_PRODUCTS: Product[] = [
     image: '/images/assets/tovuq.png',
     category: 'mahsulotlar',
   },
+
+   {
+    name: 'Kollagen Go`zallik Kompleksi',
+    vp: 37.10,
+    recommendedPrice: 601958,
+    price25: 601958,
+    price35: 538800,
+    price42: 494589,
+    price50: 44063,
+    likes: 52,
+    unlikes: 0,
+    image: 'https://uz.myfiluet.com/images/thumbs/0000680_kollagen-bti-kompleks_380.png',
+    category: 'mahsulotlar',
+  },
+  
 ];
 
 const COSMETICS: Product[] = [
