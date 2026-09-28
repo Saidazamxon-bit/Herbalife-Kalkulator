@@ -14,7 +14,7 @@ interface Product {
 
 const NUTRITION_PRODUCTS: Product[] = [
   {
-    name: 'PROTEIN KOKTEYLI FORMULA 1 QOVUN TA\'MLI',
+    name: 'QOVUN protein kokteyli formula 1 ta\'mli',
     vp: 23.95,
     recommendedPrice: 515104,
     price50: 301030,
@@ -27,7 +27,7 @@ const NUTRITION_PRODUCTS: Product[] = [
     category: 'mahsulotlar',
   },
   {
-    name: 'BANANLI MUSS TA\'MLI BILAN FORMULA 1 PROTEINLI KOKTEYLI',
+    name: 'BANANLI MUSS ta\'mi bilan formula 1 proteinli kokteyli',
      vp: 23.95,
     recommendedPrice: 515104,
     price50: 301030,
@@ -40,7 +40,7 @@ const NUTRITION_PRODUCTS: Product[] = [
     category: 'mahsulotlar',
   },
   {
-    name: 'VANILI KREM TA\'MI BILAN FORMULA 1 PROTEINLI KOKTEYLI',
+    name: 'VANILI KREM ta\'mi bilan formula 1 proteinli kokteyli',
      vp: 23.95,
     recommendedPrice: 515104,
     price50: 301030,
@@ -53,7 +53,7 @@ const NUTRITION_PRODUCTS: Product[] = [
     category: 'mahsulotlar',
   },
   {
-    name: 'YOZGI REZA MEVALAR TA\'MLI BILAN FORMULA 1 PROTEINLI KOKTEYLI',
+    name: 'YOZGI REZA MEVALAR ta\'mi bilan formula 1 proteinli kokteyli',
      vp: 23.95,
     recommendedPrice: 515104,
     price50: 301030,
@@ -66,7 +66,7 @@ const NUTRITION_PRODUCTS: Product[] = [
     category: 'mahsulotlar',
   },
   {
-    name: 'QARSILDOQ PECHENYE TA\'MI BILAN FORMULA 1 PROTEINLI KOKTEYLI',
+    name: 'QARSILDOQ PECHENYE ta\'mi bilan formula 1 proteinli kokteyli',
      vp: 23.95,
     recommendedPrice: 515104,
     price50: 301030,
